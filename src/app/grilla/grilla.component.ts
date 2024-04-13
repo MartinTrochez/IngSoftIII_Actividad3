@@ -28,8 +28,8 @@ export class GrillaComponent implements OnInit {
     });
   }
 
-  filterPost(): void {
-    this.servicioService.filterPosts(this.searchText).subscribe(posts => {
+  filterPost(searchText: any): void {
+    this.servicioService.filterPosts(searchText).subscribe(posts => {
       this.posts = posts;
     })
   }
