@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from './data.service';
 
 @Component({
@@ -18,9 +18,9 @@ export class AppComponent implements OnInit {
   }
 
   applyFilter() {
-    this.filteredPosts = this.posts.filter(post =>
-      post.title.toLowerCase().includes(this.filterText.toLowerCase())
-    );
+    this.dataService.filterPost(this.filterText).subscribe((data) => {
+      this.posts = data;
+    })
   }
 
   loadPosts() {
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
   addPost() {
     const newPost = { title: 'New Post', body: 'This is a new post.', userId: 1 };
     this.dataService.createPost(newPost).subscribe(() => {
-      this.posts.unshift(newPost);  // For demonstration, prepend locally
+      this.posts.unshift(newPost);
     });
   }
 

@@ -14,6 +14,10 @@ export class DataService {
     return this.http.get(this.apiUrl);
   }
 
+  filterPost(filterText: string): Observable<any[]> {
+    return this.http.get<any[]>(`https://jsonplaceholder.typicode.com/posts?q=${filterText}`);
+  }
+
   createPost(postData: { title: string; body: string; userId: number }): Observable<any> {
     return this.http.post(this.apiUrl, postData);
   }
