@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   posts: any[] = [];
   filteredPosts: any[] = [];
   filterText: any;
+  title: any;
 
   constructor(private dataService: DataService) { }
 
