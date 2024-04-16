@@ -2,7 +2,7 @@
   <input type="text" [(ngModel)]="filterText">
   <button class="btn btn-success mb-3" (click)="applyFilter()">Filtrar</button>
   <button class="btn btn-success mb-3" (click)="addPost()">Add Post</button>
-  <div *ngFor="let post of posts; let i = index" class="card mb-3">
+  <div *ngFor="let post of posts | paginate: { itemsPerPage: 10, currentPage: p }" class="card mb-3">
     <div class="card-body">
       <h5 class="card-title">{{ post.title }}</h5>
       <p class="card-text">{{ post.body }}</p>
@@ -10,4 +10,5 @@
       <button class="btn btn-danger" (click)="deletePost(post.id)">Delete</button>
     </div>
   </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>

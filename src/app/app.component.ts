@@ -11,7 +11,8 @@ export class AppComponent implements OnInit {
   filteredPosts: any[] = [];
   filterText: any;
   title: any;
-
+  p: number = 1; // Esta es la propiedad para la paginación
+  
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
