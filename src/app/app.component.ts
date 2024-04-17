@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
     this.dataService.filterPost(this.filterText).subscribe((data) => {
       this.posts = data;
     })
+     this.p = 1; // Reiniciar la página a la primera cuando se aplica un filtro
   }
 
   loadPosts() {
