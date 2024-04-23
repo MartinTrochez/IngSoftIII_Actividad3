@@ -4,6 +4,7 @@
       <input type="text" class="form-control" [(ngModel)]="filterText"/>
       <button type="button" class="btn btn-dark" (click)="applyFilter()"> Filtrar </button>
       <button type="button" class="btn btn-secondary" (click)="addPost()">Add Post </button>
+      <app-nuevo-post/>
     </div>
   </div>
   <div *ngFor="let post of posts | paginate: { itemsPerPage: 5, currentPage: p }" class="card mb-3">

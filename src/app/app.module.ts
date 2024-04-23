@@ -5,10 +5,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NuevoPostComponent } from './nuevo-post/nuevo-post.component';
+import { PostsService } from './posts.service'; 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NuevoPostComponent
   ],
   imports: [
     BrowserModule,
@@ -17,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [PostsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
