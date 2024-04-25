@@ -1,23 +1,27 @@
-// post-form.component.ts
-import { Component } from '@angular/core';
-import { PostsService } from './posts.service';
+// nuevo-post.component.ts
+import { Component, Output, EventEmitter } from '@angular/core';
+import { DataService } from '/xampp/htdocs/Actividad-Angular/IngSoftIII_Actividad3/src/app/data.service';
 
 @Component({
-  selector: 'app-post-form',
-  templateUrl: './post-form.component.html',
-  styleUrls: ['./post-form.component.css']
+  selector: 'app-nuevo-post',
+  templateUrl: './nuevo-post.component.html',
+  styleUrls: ['./nuevo-post.component.css']
 })
-export class PostFormComponent {
+export class NuevoPostComponent {
   title: string = '';
   description: string = '';
 
-  constructor(private postsService: PostsService) { }
+  @Output() postAdded = new EventEmitter<any>();
+
+  constructor(private dataService: DataService) { }
 
   addPost(): void {
     if (this.title && this.description) {
-      this.postsService.addPost(this.title, this.description);
-      this.title = '';
-      this.description = '';
+      this.dataService.createPost({ title: this.title, body: this.description, userId: 1 }).subscribe((newPost) => {
+        this.postAdded.emit(newPost); // Emitir evento con el nuevo post
+        this.title = '';
+        this.description = '';
+      });
     }
   }
 }

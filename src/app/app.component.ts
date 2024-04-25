@@ -1,29 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   posts: any[] = [];
-  filteredPosts: any[] = [];
-  filterText: any;
-  title: any;
-  p: number = 1; // Esta es la propiedad para la paginación
-  
+  filterText: string = '';
+  p: number = 1; // Propiedad para la paginación
+
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.loadPosts();
-  }
-
-  applyFilter() {
-    this.dataService.filterPost(this.filterText).subscribe((data) => {
-      this.posts = data;
-    })
-     this.p = 1; // Reiniciar la página a la primera cuando se aplica un filtro
   }
 
   loadPosts() {
@@ -43,7 +34,7 @@ export class AppComponent implements OnInit {
     const updatedPost = { ...post, title: 'Updated Title' };
     this.dataService.updatePost(post.id, updatedPost).subscribe(() => {
       const index = this.posts.findIndex((p) => p.id === post.id);
-      this.posts[index] = updatedPost;  // For demonstration, update locally
+      this.posts[index] = updatedPost;  
     });
   }
 
@@ -51,5 +42,16 @@ export class AppComponent implements OnInit {
     this.dataService.deletePost(id).subscribe(() => {
       this.posts = this.posts.filter((post) => post.id !== id);
     });
+  }
+
+  onPostAdded(newPost: any) {
+    this.posts.unshift(newPost); 
+  }
+
+  applyFilter() {
+    this.dataService.filterPosts(this.filterText).subscribe((data) => {
+      this.posts = data;
+    });
+    this.p = 1; 
   }
 }

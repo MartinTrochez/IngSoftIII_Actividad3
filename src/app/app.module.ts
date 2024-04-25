@@ -5,13 +5,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NuevoPostComponent } from './nuevo-post/nuevo-post.component';
-import { PostsService } from './posts.service'; 
+import { NuevoPostComponent } from './nuevo-post/nuevo-post.component'; // Importa el componente aquí
+import { DataService } from './data.service'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NuevoPostComponent
+    NuevoPostComponent // Agrega el componente aquí
   ],
   imports: [
     BrowserModule,
@@ -20,7 +20,7 @@ import { PostsService } from './posts.service';
     FormsModule,
     NgxPaginationModule
   ],
-  providers: [PostsService],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
