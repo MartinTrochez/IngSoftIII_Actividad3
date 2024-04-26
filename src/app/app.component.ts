@@ -24,6 +24,12 @@ export class AppComponent implements OnInit {
     })
   }
 
+  clearFilter() {
+    this.filterText = ''; 
+    this.loadPosts(); 
+  }
+  
+
   loadPosts() {
     this.dataService.getPosts().subscribe((data) => {
       this.posts = data;
